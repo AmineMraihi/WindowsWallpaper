@@ -7,7 +7,7 @@ namespace WindowsWallpaper
 
         private static IContainer CompositionRoot()
         {
-            var builder = new ContainerBuilder();
+            ContainerBuilder builder = new ContainerBuilder();
             builder.RegisterType<Application>();
             builder.RegisterType<HttpClient>().SingleInstance();
             builder.RegisterType<BingImageService>().As<IBingImageService>();

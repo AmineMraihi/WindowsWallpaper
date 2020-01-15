@@ -16,12 +16,18 @@ namespace WindowsWallpaper
 
     public class BingImageService : IBingImageService
     {
-        private HttpClient _httpClient;
+        private readonly HttpClient _httpClient;
 
         public BingImageService(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }
+
+        /// <summary>
+        /// converts the returned result to BingImage object
+        /// </summary>
+        /// <param name="myResponseString">the json response as input</param>
+        /// <returns>a BingImage object</returns>
         public BingImage ConvertToBingImage(Task<string> myResponseString)
         {
             var parsedReponse = JValue.Parse(myResponseString.Result.ToString());
@@ -29,6 +35,11 @@ namespace WindowsWallpaper
             return myImage.ToObject<BingImage[]>().FirstOrDefault();
         }
 
+        /// <summary>
+        /// get image file from url of the image
+        /// </summary>
+        /// <param name="imageUrl">url of the image</param>
+        /// <returns>image</returns>
         public async Task<byte[]> GetByte(string imageUrl)
         {
             byte[] responseByteArray = new byte[0];
@@ -40,6 +51,11 @@ namespace WindowsWallpaper
             return responseByteArray;
         }
 
+        /// <summary>
+        /// get the image info from server
+        /// </summary>
+        /// <param name="imageUrl">imageUrl</param>
+        /// <returns>image info as string</returns>
         public async Task<string> GetImageFromServer(string imageUrl)
         {
             string responseString = string.Empty;
@@ -51,6 +67,11 @@ namespace WindowsWallpaper
             return responseString;
         }
 
+        /// <summary>
+        /// removes special caracters from image name 
+        /// </summary>
+        /// <param name="str">image old title</param>
+        /// <returns>image title without special caracters</returns>
         public string RemoveSpecialCharacters(string str)
         {
             return Regex.Replace(str, "[^a-zA-Z0-9_.]+", "", RegexOptions.Compiled);
