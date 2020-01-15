@@ -43,6 +43,10 @@ namespace WindowsWallpaper
             File.WriteAllBytes(string.Format("{0}{1}{2}", path, myImageTitleWithoutSpecialCaracters, ".png"), myImage.Result);
 
             SystemParametersInfo(SetWallpaper, 0, string.Format("{0}{1}{2}", path, myImageTitleWithoutSpecialCaracters, ".png"), UpdateIniFile | SendWinIniChange);
+            Console.WriteLine("Wallpaper has been successfully changed to Bing image of the day!");
+            Console.WriteLine("Press any key to exit");
+            Console.ReadKey();
+
         }
     }
 }
