@@ -1,0 +1,3 @@
+# WindowsWallpaper
+changes windows wallpaper automatically when opened.
+project was designed with .Net Core, autofac for dependency injection...
